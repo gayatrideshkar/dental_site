@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About - Sharada Dental Clinic{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HERO (small) -->
+{% comment %} <section class="hero" style="min-height:240px;background-image: url('{% static "img/hero-img.png" %}');">
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-inner" style="padding:2rem 1rem;">
+    <h1>About Sharada Dental Clinic</h1>
+    <p class="lead">Compassionate, modern dental care for your whole family — focused on comfort, prevention, and lasting results.</p>
+  </div>
+</section> {% endcomment %}
+
+<section class="service-detail" aria-label="About the clinic">
+  <div class="service-header">
+    <h1>About Us</h1>
+    <p class="service-excerpt">We combine up-to-date clinical techniques with a warm, friendly approach — helping patients feel confident and cared for at every visit.</p>
+  </div>
+
+<div class="service-columns">
+    <!-- Sidebar / profile -->
+    <aside class="service-media" aria-label="Lead dentist profile">
+      <div style="text-align:center">
+         <img src="{% static 'img/doc_img.png' %}" alt="Clinic / team" style="width:100%;height:320px;object-fit:cover;border-radius:8px">
+
+        {% comment %} {% if lead_doctor and lead_doctor.image %}
+          <img src="img/doc_img.png" alt="{{ lead_doctor.name }}" style="width:100%;height:320px;object-fit:cover;border-radius:8px">
+        {% else %}
+          <img src="{% static 'img/about-placeholder.svg' %}" alt="Clinic / team" style="width:100%;height:320px;object-fit:cover;border-radius:8px">
+        {% endif %} {% endcomment %}
+      </div>
+
+      <div style="margin-top:0.75rem;text-align:left">
+        <h3 style="margin:0 0 0.25rem">{% if lead_doctor %}{{ lead_doctor.name }}{% else %}Dr. Suchitra Deshkar (Lote){% endif %}</h3>
+        <div class="post-meta" style="margin-bottom:0.6rem">{% if lead_doctor %}{{ lead_doctor.title }}{% else %}Dentist{% endif %}</div>
+        <p class="post-excerpt" style="margin:0;color:var(--muted)">{% if lead_doctor and lead_doctor.excerpt %}{{ lead_doctor.excerpt }}{% else %}Dr. Suchitra Deshkar holds a Bachelor of Dental Surgery (BDS) and has been trained to diagnose, treat, and prevent a wide range of dental conditions. With a patient-centric approach and attention to detail, Dr. Suchitra ensures high standards of care using modern techniques and safe clinical practices.{% endif %}</p>
+
+        <div style="margin-top:1rem">
+          <a href="{% url 'contact' %}" class="btn cta-primary">Book an appointment</a>
+          <a href="tel:+919422178603" class="btn btn-outline">Call clinic</a>
+        </div>
+
+         {% comment %} <!-- Mission & Vision (duplicated beside profile image) -->
+         <div style="margin-top:1rem;padding:0.5rem;background:var(--card-bg);border-radius:6px">
+           l practice in our community, offering accessible, modern care that helps patients achieve lifelong oral health.</p>
+         </div>  {% endcomment %}
+
+         <div style="margin-top:1rem" class="clinic-hours">
+          <h3>Clinic hours</h3>
+          <div class="hours-row is-today">
+            <div class="day">Mon - Sat</div>
+            <div class="time">10 am–1 pm | 5 pm–8 pm</div>
+          </div>
+          <div class="hours-row closed">
+            <div class="day">Sunday</div>
+            <div class="time">Closed</div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Main content -->
+    <div class="service-body">
+      <h2>Our mission</h2>
+      <p>To create a healthy smile by increasing the awareness about Oral Health by dental education and build a Trust and Satisfaction.</p>
+      <h2>Our vision</h2>
+      <p>To make patients teeth cavity free by offering Patient-focused quality treatment by expert doctors ethically with personalised care in a comfortable environment.</p>
+      <h3 style="margin-top:1rem">What to expect</h3>
+      <ul class="degree-list">
+        <li>Friendly, judgement-free consultations</li>
+        <li>Clear treatment plans with transparent pricing</li>
+        <li>Comfort-focused procedures and sedation options when needed</li>
+      </ul>
+      {% comment %} </div> {% endcomment %}
+
+     <h3 style="margin-top:1.25rem">Why patients choose us</h3>
+      <div class="features">
+        <div class="card">
+          <h3>Pain-minimised care</h3>
+          <p>We prioritise comfort and use modern anaesthesia and techniques to reduce pain and anxiety.</p>
+        </div>
+        <div class="card">          <h3>Transparent pricing</h3>
+          <p>All major treatments are explained clearly with options and estimated costs up front.</p>
+        </div>
+        <div class="card">
+          <h3>Personalised treatment</h3>
+          <p>Each plan is tailored to the patient's goals, time, and budget—no one-size-fits-all dentistry.</p>
+        </div>
+        <div class="card">          
+          <h3>Personalised treatment</h3>
+          <p>Each plan is tailored to the patient's goals, time, and budget—no one-size-fits-all dentistry.</p>
+        </div>
+      </div>
+
+     <div style="margin-top:1.25rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+        <a class="btn btn-outline" href="{% url 'services_list' %}">View treatments</a>
+      </div>
+
+     <footer style="margin-top:1.25rem;color:var(--muted)">
+        <small>Photos and some text are samples. For accurate staff profiles and certifications, contact the clinic.</small>
+      </footer>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

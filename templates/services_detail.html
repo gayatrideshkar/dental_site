@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} - Sharada Dental{% endblock %}
+
+{% block content %}
+  <article class="service-detail">
+
+    <header class="service-header">
+      <h1>{{ service.title }}</h1>
+      {% if service.short_description %}
+        <p class="service-excerpt">{{ service.short_description }}</p>
+      {% endif %}
+
+      
+    </header>
+
+    <div class="service-columns">
+      <div class="service-media">
+        {% if service.image %}
+          <img src="{{ service.image.url }}" alt="{{ service.title }}">
+        {% else %}
+          <img src="{% static 'img/about-placeholder.svg' %}" alt="{{ service.title }} - example image">
+          <p class="muted">Example image — replace from the admin later.</p>
+        {% endif %}
+      </div>
+
+      <div class="service-body">
+        <p><strong>What it is:</strong></p>
+        {% if service.what_is %}
+          <p>{{ service.what_is|linebreaksbr }}</p>
+        {% endif %}
+
+        <p><strong>Why it’s necessary:</strong></p>
+        <p>{{ service.why_necessary|linebreaksbr }}</p>
+
+        <p><strong>When to do it:</strong></p>
+        <p>{{ service.when_to_do|linebreaksbr }}</p>
+      </div>
+    </div>
+
+    <p class="back-link"><a href="{% url 'services_list' %}">← Back to all treatments</a></p>
+<div class="service-actions">
+        <a class="btn btn-outline" href="tel:+919422178603">Call Clinic</a>
+      </div>
+  </article>
+{% endblock %}

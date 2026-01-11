@@ -1,0 +1,9 @@
+<div class="clinic-hours">
+  <h3>🕒 Clinic Hours</h3>
+  {% for item in opening_hours %}
+    <div class="hours-row {% if item.is_today %}is-today{% endif %} {% if item.periods|length == 0 %}closed{% endif %}">
+      <span class="day">{{ item.day }} {% if item.is_today %}<span class="today-badge {% if item.is_open %}open{% else %}closed{% endif %}">{% if item.is_open %}Open now{% else %}Closed{% endif %}</span>{% endif %}</span>
+      <span class="time">{% if item.periods|length == 0 %}Closed{% else %}{% for p in item.periods %}{{ p }}{% if not forloop.last %} <span class="divider">|</span> {% endif %}{% endfor %}{% endif %}</span>
+    </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Gallery - Sharada Dental{% endblock %}
+
+{% block content %}
+  <h1>Gallery</h1>
+
+  <section class="gallery-section" aria-label="Clinic photos">
+    <div class="container">
+      <h2>Clinic</h2>
+      <div class="gallery masonry">
+        {% if clinic_images.exists %}
+          {% for img in clinic_images %}
+            <button class="thumb" data-src="{{ img.image.url }}" aria-label="Open {{ img.title }}">
+              {% if img.thumbnail %}
+                <img data-src="{{ img.thumbnail.url }}" src="{{ img.thumbnail.url }}" alt="{{ img.alt_text|default:'Clinic image - REPLACE_ME' }}" loading="lazy">
+              {% else %}
+                <img data-src="{{ img.image.url }}" src="{{ img.image.url }}" alt="{{ img.alt_text|default:'Clinic image - REPLACE_ME' }}" loading="lazy">
+              {% endif %}
+            </button>
+          {% endfor %}
+        {% else %}
+          <!-- REPLACE_ME placeholders -->
+          <div class="thumb">No clinic images yet. Add via admin.</div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section" aria-label="Before and after photos">
+    <div class="container">
+      <h2>Before &amp; After</h2>
+      <div class="gallery masonry">
+        {% if ba_images.exists %}
+          {% for img in ba_images %}
+            <button class="thumb" data-src="{{ img.image.url }}" aria-label="Open {{ img.title }}">
+              {% if img.thumbnail %}
+                <img data-src="{{ img.thumbnail.url }}" src="{{ img.thumbnail.url }}" alt="{{ img.alt_text|default:'Before or after image - REPLACE_ME' }}" loading="lazy">
+              {% else %}
+                <img data-src="{{ img.image.url }}" src="{{ img.image.url }}" alt="{{ img.alt_text|default:'Before or after image - REPLACE_ME' }}" loading="lazy">
+              {% endif %}
+            </button>
+          {% endfor %}
+        {% else %}
+          <!-- REPLACE_ME placeholders -->
+          <div class="thumb">No before/after images yet. Add via admin.</div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+<!-- Lightbox modal (hidden) for gallery images -->
+<div id="lightbox" class="lightbox" role="dialog" aria-hidden="true" aria-label="Image preview">
+  <button class="lightbox-close" aria-label="Close">✕</button>
+  <button class="lightbox-nav lightbox-prev" aria-label="Previous">‹</button>
+  <button class="lightbox-nav lightbox-next" aria-label="Next">›</button>
+  <div class="lightbox-content"><img src="" alt="Preview image"></div>
+</div>
+
+{% endblock %}

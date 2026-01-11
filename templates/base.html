@@ -1,0 +1,90 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Sharada Dental Clinic{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="{% url 'index' %}">
+          <img class="brand-logo" src="{% static 'img/favicon.png' %}" alt="Sharada Dental Clinic logo">
+          {% comment %} <span class="brand-text">Sharada Dental Clinic</span> {% endcomment %}
+           <div class="site-title">
+  Sharada <span>Dental Clinic</span>
+</div>
+        </a> 
+        <nav class="main-nav">
+          <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <!-- Treatments Dropdown -->
+            <li class="nav-item dropdown" id="treatmentsDropdown">
+              <button
+                class="nav-link dropdown-toggle"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="treatments-menu"
+                id="treatments-button"
+              >
+                Treatments
+                <span class="dropdown-icon">▾</span>
+              </button>
+
+              <div class="dropdown-menu" id="treatments-menu" role="menu">
+                <a href="{% url 'services_detail' 'scaling-polishing' %}" role="menuitem">
+                  Scaling & Polishing
+                </a>
+                <a href="{% url 'services_detail' 'root-canal-treatment' %}" role="menuitem">
+                  Root Canal Treatment
+                </a>
+                <a href="{% url 'services_detail' 'dental-implants' %}" role="menuitem">
+                  Dental Implants
+                </a>
+                <a href="{% url 'services_detail' 'braces' %}" role="menuitem">
+                  Braces & Aligners
+                </a>
+                <a href="{% url 'services_detail' 'teeth-whitening' %}" role="menuitem">
+                  Teeth Whitening
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <a href="{% url 'services_list' %}" class="view-all" role="menuitem">
+                  View All Treatments →
+                </a>
+              </div>
+            </li>
+            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+            <li><a href="{% url 'posts' %}">Posts</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Theme toggle (using SVGs provided) -->
+        <button id="theme-switch" class="theme-toggle" aria-label="Toggle color theme" aria-pressed="false">
+          <svg class="icon icon-moon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" aria-hidden="true" focusable="false"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
+          <svg class="icon icon-sun" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" aria-hidden="true" focusable="false"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">&copy; {% now "Y" %} Sharada Dental Clinic</div>
+    </footer>
+
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

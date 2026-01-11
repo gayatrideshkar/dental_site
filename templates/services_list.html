@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Treatments - Sharada Dental{% endblock %}
+
+{% block content %}
+  <h1>All Treatments</h1>
+  <div class="treatments-grid">
+    {% for s in services %}
+      <a class="card-link" href="{% url 'services_detail' s.slug %}">
+        <article class="card reveal-on-scroll">
+          <div class="card-media">
+            {% if s.image %}
+              <img src="{{ s.image.url }}" alt="{{ s.title }}">
+            {% else %}
+              <img src="{% static 'img/about-placeholder.svg' %}" alt="{{ s.title }}">
+            {% endif %}
+          </div>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.short_description|default:'A helpful treatment to improve oral health. Edit this text in the admin.' }}</p>
+        </article>
+      </a>
+    {% empty %}
+      <p>No services found yet.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

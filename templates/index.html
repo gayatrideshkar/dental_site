@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Dental Site{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <h1>Compassionate Dental Care</h1>
+        <p class="lead">Modern treatments, friendly staff, and confident smiles — personalized for you.</p>
+        <p>
+          <a class="btn" href="{% url 'contact' %}">Book Now</a>
+          <a class="btn btn-outline" href="{% url 'services_list' %}">View Treatments</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="features">
+      <div class="card">
+        <h3>Preventative Care</h3>
+        <p>Cleaning, checkups, and advice to keep you healthy.</p>
+      </div>
+      <div class="card">
+        <h3>Advanced Treatments</h3>
+        <p>Root canals, implants and restorative solutions.</p>
+      </div>
+      <div class="card">
+        <h3>Cosmetic Dentistry</h3>
+        <p>Whitening, alignment and smile makeovers.</p>
+      </div>
+    </section>
+  </div>
+{% endblock %}

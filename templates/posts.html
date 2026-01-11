@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts - Dental Site{% endblock %}
+
+{% block content %}
+  <h1>Latest Posts</h1>
+  <div class="posts-grid">
+    {% load static %}
+    {% for p in posts %}
+      <article class="post-card">
+        <div class="post-media">
+          {% if p.image_url %}
+            <a href="{{ p.image_url }}" target="_blank" rel="noopener noreferrer" class="post-image-link" title="Open full image for {{ p.title }}">
+              <img src="{{ p.image_url }}" alt="{{ p.title }}">
+            </a>
+          {% else %}
+            <img src="{% static 'img/gallery-placeholder-4.svg' %}" alt="{{ p.title }}">
+          {% endif %}
+        </div>
+        <div class="post-body">
+          <h3 class="post-title">{{ p.title }}</h3>
+          <p class="post-excerpt">{{ p.excerpt }}</p>
+          <div class="post-meta">{{ p.date }}</div>
+          <div class="post-actions">
+            <a class="btn cta-primary" href="{{ book_link }}">Book Appointment</a>
+            <a class="btn btn-outline" href="{{ call_link }}">Call Now</a>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - Sharada Dental Clinic{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION (REPLACE_ME background image path) -->
+<section class="hero" id="hero" aria-label="Clinic hero" style="background-image: url('{% static "img/hero-img1.png" %}');">
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="container hero-inner" role="document">
+    <h1>Sharada Dental Clinic</h1>
+    <p class="lead">Personalized treatments, up-to-date technology, and a smile-first team.</p>
+    <p class="hero-ctas">
+      <a class="btn cta-primary" href="{% url 'contact' %}">Book Appointment</a>
+      <a class="btn cta-secondary" href="tel:+919422178603">Call Now</a>
+    </p>
+  </div>
+</section>
+
+<!-- QUICK TRUST STRIP -->
+<section class="trust-strip" aria-label="Trust indicators">
+  <div class="container trust-inner">
+    {% comment %} <div class="trust-item">⭐ <strong>4.8/5</strong><span>Google rating</span></div> {% endcomment %}
+    <div class="trust-item">🦷 <strong>10+</strong><span>years experience</span></div>
+    <div class="trust-item">👩‍⚕️ <strong>Certified</strong><span>Dental surgeon</span></div>
+    <div class="trust-item">🧼 <strong>Hygienic</strong><span>Sterilized clinic</span></div>
+  </div>
+</section>
+
+<!-- ABOUT THE CLINIC -->
+<section class="about" aria-label="About the clinic">
+  <div class="container about-inner">
+    <div class="about-copy reveal-on-scroll">
+      <h2>Warm, confident dental care</h2>
+      <p>We focus on gentle treatments and clear communication. From routine check-ups to advanced care, we will guide you toward a healthier smile with compassion and skill.</p>
+
+      <h3 style="margin-top:0.75rem">Our mission</h3>
+      <p>To create a healthy smile by increasing the awareness about Oral Health by dental education and build a Trust and Satisfaction. 
+</p>
+
+      <h3 style="margin-top:0.75rem">Our vision</h3>
+      <p>To make patients teeth cavity free by offering Patient-focused quality treatment by expert doctors ethically with personalised care in a comfortable environment.</p>
+
+      <p><a href="{% url 'about' %}" class="btn btn-outline">Read more</a></p>
+    </div>
+    <div class="about-image reveal-on-scroll">
+      <!-- REPLACE_ME - dentist / clinic image (sized to 300x325) -->
+      <img src="{% static 'img/doc_img.png' %}" alt="Dentist" loading="lazy" width="300" height="325" style="width:300px;height:325px;object-fit:cover;">
+    </div>
+  </div>
+</section>
+
+<!-- TOP TREATMENTS -->
+<section class="top-treatments" aria-label="Top treatments">
+  <div class="container">
+    <h2>Top Treatments</h2>
+    <div class="treatments-grid">
+      {% comment %} Render top published services (up to 6). Falls back to examples if none available. {% endcomment %}
+      {% if top_services %}
+        {% for s in top_services %}
+          <a class="card-link" href="{% url 'services_detail' s.slug %}">
+            <article class="card reveal-on-scroll">
+              <div class="card-media">
+                {% if s.image %}
+                  <img src="{{ s.image.url }}" alt="{{ s.title }}" loading="lazy">
+                {% else %}
+                  🦷
+                {% endif %}
+              </div>
+              <h3>{{ s.title }}</h3>
+              {% if s.short_description %}
+                <p>{{ s.short_description }}</p>
+              {% endif %}
+            </article>
+          </a>
+        {% endfor %}
+      {% else %}
+        <!-- Fallback placeholders (original hardcoded examples) -->
+        <a class="card-link" href="{% url 'services_detail' 'scaling-polishing' %}">
+          <article class="card reveal-on-scroll">
+            <div class="card-media">🦷</div>
+            <h3>Scaling & Polishing</h3>
+            <p>Gentle cleaning to remove plaque and restore brightness.</p>
+          </article>
+        </a>
+
+        <a class="card-link" href="{% url 'services_detail' 'root-canal-treatment' %}">
+          <article class="card reveal-on-scroll">
+            <div class="card-media">🪥</div>
+            <h3>Root Canal Treatment</h3>
+            <p>Advanced endodontic care to relieve pain and save teeth.</p>
+          </article>
+        </a>
+
+        <a class="card-link" href="{% url 'services_detail' 'dental-implants' %}">
+          <article class="card reveal-on-scroll">
+            <div class="card-media">🔩</div>
+            <h3>Dental Implants</h3>
+            <p>Long-lasting tooth replacement solutions for confident smiles.</p>
+          </article>
+        </a>
+
+        <a class="card-link" href="{% url 'services_detail' 'braces' %}">
+          <article class="card reveal-on-scroll">
+            <div class="card-media">🦷</div>
+            <h3>Braces & Aligners</h3>
+            <p>Orthodontic care for children and adults to align teeth.</p>
+          </article>
+        </a>
+
+        <a class="card-link" href="{% url 'services_detail' 'teeth-whitening' %}">
+          <article class="card reveal-on-scroll">
+            <div class="card-media">✨</div>
+            <h3>Teeth Whitening</h3>
+            <p>Brighten your smile with safe and effective whitening.</p>
+          </article>
+        </a>
+
+        <a class="card-link" href="{% url 'services_detail' 'pediatric-dentistry' %}">
+          <article class="card reveal-on-scroll">
+            <div class="card-media">👶</div>
+            <h3>Pediatric Dentistry</h3>
+            <p>Friendly care specially designed for young patients.</p>
+          </article>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-choose" aria-label="Why choose us">
+  <div class="container two-col">
+    <h2>Why choose us</h2>
+    <div class="why-grid">
+      <div class="why-item reveal-on-scroll">✔️ <strong>Painless procedures</strong></div>
+      <div class="why-item reveal-on-scroll">⚙️ <strong>Modern equipment</strong></div>
+      <div class="why-item reveal-on-scroll">💰 <strong>Transparent pricing</strong></div>
+      <div class="why-item reveal-on-scroll">😊 <strong>Friendly staff</strong></div>
+      <div class="why-item reveal-on-scroll">🚨 <strong>Emergency care</strong></div>
+      <div class="why-item reveal-on-scroll">🧩 <strong>Personalized plans</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY PREVIEW -->
+<section class="gallery-preview" aria-label="Gallery preview">
+  <div class="container">
+    <h2>Gallery</h2>
+    <div class="gallery masonry">
+      <!-- DB-driven gallery previews (clinic + before/after) -->
+      {% if clinic_preview %}
+        {% for img in clinic_preview %}
+          <button class="thumb reveal-on-scroll" data-src="{{ img.image.url }}" aria-label="Open {{ img.title }}">
+            {% if img.thumbnail %}
+              <img data-src="{{ img.thumbnail.url }}" src="{{ img.thumbnail.url }}" alt="{{ img.alt_text|default:'Clinic image - REPLACE_ME' }}" loading="lazy">
+            {% else %}
+              <img data-src="{{ img.image.url }}" src="{{ img.image.url }}" alt="{{ img.alt_text|default:'Clinic image - REPLACE_ME' }}" loading="lazy">
+            {% endif %}
+          </button>
+        {% endfor %}
+      {% endif %}
+
+      {% if ba_preview %}
+        {% for img in ba_preview %}
+          <button class="thumb reveal-on-scroll" data-src="{{ img.image.url }}" aria-label="Open {{ img.title }}">
+            {% if img.thumbnail %}
+              <img data-src="{{ img.thumbnail.url }}" src="{{ img.thumbnail.url }}" alt="{{ img.alt_text|default:'Before or after image - REPLACE_ME' }}" loading="lazy">
+            {% else %}
+              <img data-src="{{ img.image.url }}" src="{{ img.image.url }}" alt="{{ img.alt_text|default:'Before or after image - REPLACE_ME' }}" loading="lazy">
+            {% endif %}
+          </button>
+        {% endfor %}
+      {% endif %}
+
+      {% if not clinic_preview and not ba_preview %}
+        <!-- Fallback placeholders -->
+        <button class="thumb" data-src="{% static 'img/gallery-placeholder-1.svg' %}"><img data-src="{% static 'img/gallery-placeholder-1.svg' %}" src="{% static 'img/gallery-placeholder-1.svg' %}" alt="Gallery placeholder" loading="lazy"></button>
+        <button class="thumb" data-src="{% static 'img/gallery-placeholder-2.svg' %}"><img data-src="{% static 'img/gallery-placeholder-2.svg' %}" src="{% static 'img/gallery-placeholder-2.svg' %}" alt="Gallery placeholder" loading="lazy"></button>
+      {% endif %}
+    </div>
+    <p><a class="btn btn-outline" href="{% url 'gallery' %}">View Full Gallery</a></p>
+  </div>
+</section>
+
+<!-- Lightbox modal (hidden) -->
+<div id="lightbox" class="lightbox" role="dialog" aria-hidden="true" aria-label="Image preview">
+  <button class="lightbox-close" aria-label="Close">✕</button>
+  <button class="lightbox-nav lightbox-prev" aria-label="Previous">‹</button>
+  <button class="lightbox-nav lightbox-next" aria-label="Next">›</button>
+  <div class="lightbox-content"><img src="" alt="Preview image"></div>
+</div>
+
+{% endblock %}

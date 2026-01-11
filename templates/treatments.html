@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Treatments - Dental Site{% endblock %}
+
+{% block content %}
+  <h1>Treatments</h1>
+  <p>Explore our treatments.</p>
+  <ul>
+  {% for t in treatments %}
+    <li id="{{ t|slugify }}">{{ t }}</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

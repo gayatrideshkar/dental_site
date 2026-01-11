@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact - Sharada Dental{% endblock %}
+
+{% block content %}
+  <div class="contact-container container">
+    <h1 class="contact-title">Contact</h1>
+
+    <div class="contact-card">
+      <div class="contact-list">
+        <div class="contact-item contact-phone">
+          <span class="icon">📞</span>
+          <a href="{{ phone_link }}" class="contact-link" aria-label="Call {{ phone_display }}">{{ phone_display }}</a>
+        </div>
+
+        <div class="contact-item contact-address">
+          <span class="icon">📍</span>
+          <div class="address-block">
+            <a href="{{ gmap_url }}" target="_blank" rel="noopener" class="contact-link address-link">{{ address_display|linebreaksbr }}</a>
+          </div>
+        </div>
+
+        <div class="contact-item contact-hours">
+          <span class="icon">⏰</span>
+          {% include "timings.html" %}
+        </div>
+
+        <div class="contact-item contact-email">
+          <span class="icon">✉️</span>
+          <a href="mailto:{{ email }}" class="contact-link">{{ email }}</a>
+        </div>
+
+        <div class="contact-item contact-doctor">
+          <span class="icon">👨‍⚕️</span>
+          <a href="mailto:{{ email }}" class="contact-link doctor-link">{{ doctor_name }}</a>
+        </div>
+      </div>
+
+      <div class="contact-qr">
+        <img src="{{ qr_url }}" alt="QR code linking to address on Google Maps" width="150" height="150">
+        <div class="qr-caption">Scan to open in Google Maps</div>
+      </div>
+    </div>
+  </div>
+{% endblock %} 
