@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Service, GalleryImage, ContactInfo, OpeningHour, Post
+from .models import Service, GalleryImage, ContactInfo, OpeningHour, Post, Certification
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
@@ -83,3 +83,19 @@ class PostAdmin(admin.ModelAdmin):
             self.message_user(request, f"Slug adjusted to '{obj.slug}' to avoid conflicts.")
         super().save_model(request, obj, form, change)
 
+
+@admin.register(Certification)
+class CertificationAdmin(admin.ModelAdmin):
+    list_display = ('title', 'published', 'order', 'preview')
+    list_filter = ('published',)
+    search_fields = ('title',)
+    list_editable = ('order', 'published')
+    readonly_fields = ('preview',)
+    ordering = ('order', 'title')
+    fields = ('title', 'image', 'preview', 'order', 'published')
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="max-height:80px;" />', obj.image.url)
+        return ''
+    preview.short_description = 'Preview'

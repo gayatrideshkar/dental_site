@@ -36,7 +36,7 @@
       <div style="margin-top:0.75rem;text-align:left">
         <h3 style="margin:0 0 0.25rem">{% if lead_doctor %}{{ lead_doctor.name }}{% else %}Dr. Suchitra Deshkar (Lote){% endif %}</h3>
         <div class="post-meta" style="margin-bottom:0.6rem">{% if lead_doctor %}{{ lead_doctor.title }}{% else %}Dentist{% endif %}</div>
-        <p class="post-excerpt" style="margin:0;color:var(--muted)">{% if lead_doctor and lead_doctor.excerpt %}{{ lead_doctor.excerpt }}{% else %}Dr. Suchitra Deshkar holds a Bachelor of Dental Surgery (BDS) and has been trained to diagnose, treat, and prevent a wide range of dental conditions. With a patient-centric approach and attention to detail, Dr. Suchitra ensures high standards of care using modern techniques and safe clinical practices.{% endif %}</p>
+        <p class="post-excerpt" style="margin:0;color:var(--muted)">{% if lead_doctor and lead_doctor.excerpt %}{{ lead_doctor.excerpt }}{% else %}Dr. Suchitra Deshkar holds a Bachelor of Dental Surgery (BDS) and has been trained to diagnose, treat, and prevent a wide range of dental conditions with over 25 years of clinical experience. With a patient-centric approach and attention to detail, Dr. Suchitra ensures high standards of care using modern techniques and safe clinical practices.{% endif %}</p>
 
         <div style="margin-top:1rem">
           <a href="{% url 'contact' %}" class="btn cta-primary">Book an appointment</a>
@@ -96,15 +96,32 @@
         </div>
       </div>
 
+      <!-- Certifications Section -->
+      <h3 style="margin-top:1.75rem">Qualifications & Certifications</h3>
+      <div class="certifications">
+        {% if certifications %}
+          {% for cert in certifications %}
+            <div class="cert-item">
+              <img src="{{ cert.image.url }}" alt="{{ cert.title }}" title="{{ cert.title }}">
+            </div>
+          {% endfor %}
+        {% else %}
+          <p style="color:var(--muted);font-size:0.875rem;">No certifications added yet.</p>
+        {% endif %}
+      </div>
+
      <div style="margin-top:1.25rem;display:flex;gap:0.75rem;flex-wrap:wrap">
-        <a class="btn btn-outline" href="{% url 'services_list' %}">View treatments</a>
       </div>
 
      <footer style="margin-top:1.25rem;color:var(--muted)">
-        <small>Photos and some text are samples. For accurate staff profiles and certifications, contact the clinic.</small>
       </footer>
     </div>
-  </div>
+
+
+  <div style="margin-top:1.25rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+        <a class="btn btn-outline" href="{% url 'services_list' %}">View treatments</a>
+      </div>
+    </div>
 </section>
 
 {% endblock %}

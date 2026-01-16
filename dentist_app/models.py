@@ -211,3 +211,19 @@ class OpeningHour(models.Model):
 
     def __str__(self):
         return f"{self.day}: {self.periods or 'Closed'}"
+
+
+class Certification(models.Model):
+    """Model for certifications, qualifications, and other images to display on the About page."""
+    title = models.CharField(max_length=200, help_text='Name of the certification or qualification')
+    image = models.ImageField(upload_to='certifications/', help_text='Upload certification image, logo, or badge')
+    order = models.PositiveSmallIntegerField(default=0, help_text='Display order')
+    published = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'Certification'
+        verbose_name_plural = 'Certifications'
+
+    def __str__(self):
+        return self.title

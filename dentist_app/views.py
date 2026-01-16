@@ -12,7 +12,9 @@ def index(request):
     return render(request, "home.html", {"clinic_preview": clinic_preview, "ba_preview": ba_preview, "top_services": top_services})
 
 def about(request):
-    return render(request, "about.html")
+    from .models import Certification
+    certifications = Certification.objects.filter(published=True).order_by('order')
+    return render(request, "about.html", {"certifications": certifications})
 
 def treatments(request):
     # list of example treatment categories

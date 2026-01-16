@@ -11,13 +11,16 @@
       <div class="gallery masonry">
         {% if clinic_images.exists %}
           {% for img in clinic_images %}
-            <button class="thumb" data-src="{{ img.image.url }}" aria-label="Open {{ img.title }}">
-              {% if img.thumbnail %}
-                <img data-src="{{ img.thumbnail.url }}" src="{{ img.thumbnail.url }}" alt="{{ img.alt_text|default:'Clinic image - REPLACE_ME' }}" loading="lazy">
-              {% else %}
-                <img data-src="{{ img.image.url }}" src="{{ img.image.url }}" alt="{{ img.alt_text|default:'Clinic image - REPLACE_ME' }}" loading="lazy">
-              {% endif %}
-            </button>
+            <div class="gallery-item">
+              <button class="thumb" data-src="{{ img.image.url }}" aria-label="Open {{ img.title }}">
+                {% if img.thumbnail %}
+                  <img data-src="{{ img.thumbnail.url }}" src="{{ img.thumbnail.url }}" alt="{{ img.alt_text|default:'Clinic image - REPLACE_ME' }}" loading="lazy">
+                {% else %}
+                  <img data-src="{{ img.image.url }}" src="{{ img.image.url }}" alt="{{ img.alt_text|default:'Clinic image - REPLACE_ME' }}" loading="lazy">
+                {% endif %}
+              </button>
+              <p class="image-title">{{ img.title }}</p>
+            </div>
           {% endfor %}
         {% else %}
           <!-- REPLACE_ME placeholders -->
@@ -33,13 +36,16 @@
       <div class="gallery masonry">
         {% if ba_images.exists %}
           {% for img in ba_images %}
-            <button class="thumb" data-src="{{ img.image.url }}" aria-label="Open {{ img.title }}">
-              {% if img.thumbnail %}
-                <img data-src="{{ img.thumbnail.url }}" src="{{ img.thumbnail.url }}" alt="{{ img.alt_text|default:'Before or after image - REPLACE_ME' }}" loading="lazy">
-              {% else %}
-                <img data-src="{{ img.image.url }}" src="{{ img.image.url }}" alt="{{ img.alt_text|default:'Before or after image - REPLACE_ME' }}" loading="lazy">
-              {% endif %}
-            </button>
+            <div class="gallery-item">
+              <button class="thumb" data-src="{{ img.image.url }}" aria-label="Open {{ img.title }}">
+                {% if img.thumbnail %}
+                  <img data-src="{{ img.thumbnail.url }}" src="{{ img.thumbnail.url }}" alt="{{ img.alt_text|default:'Before or after image - REPLACE_ME' }}" loading="lazy">
+                {% else %}
+                  <img data-src="{{ img.image.url }}" src="{{ img.image.url }}" alt="{{ img.alt_text|default:'Before or after image - REPLACE_ME' }}" loading="lazy">
+                {% endif %}
+              </button>
+              <p class="image-title">{{ img.title }}</p>
+            </div>
           {% endfor %}
         {% else %}
           <!-- REPLACE_ME placeholders -->
